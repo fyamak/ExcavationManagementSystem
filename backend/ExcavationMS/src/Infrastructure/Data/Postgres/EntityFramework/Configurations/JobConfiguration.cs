@@ -30,7 +30,9 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
             .HasForeignKey(x => x.CustomerId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasMany(x => x.Vehicles)
-            .WithMany(x => x.Jobs);
+        builder.HasOne(x => x.Vehicle)
+            .WithMany(x => x.Jobs)
+            .HasForeignKey(x => x.VehicleId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

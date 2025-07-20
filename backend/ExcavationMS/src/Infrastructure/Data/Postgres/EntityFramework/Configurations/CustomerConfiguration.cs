@@ -18,7 +18,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.Property(x => x.Phone)
             .HasMaxLength(64);
 
-        builder.Property(x => x.Address)
+        builder.Property(x => x.Detail)
             .HasMaxLength(512);
     }
 }

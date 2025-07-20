@@ -12,6 +12,10 @@ public class Job : TrackedBaseEntity<int>
     public string? Description { get; set; }
     public string? Location { get; set; }
 
+    // One Vehicle has many Jobs
+    public int VehicleId { get; set; }
+    public Vehicle Vehicle { get; set; }
+
     // One Customer has many Jobs
     public int CustomerId { get; set; }
     public Customer Customer { get; set; } = null!;
@@ -20,8 +24,6 @@ public class Job : TrackedBaseEntity<int>
     public ICollection<Income> Incomes { get; } = new List<Income>();
     public ICollection<Expense> Expenses { get; } = new List<Expense>();
 
-    // Many to Many
-    public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }
 
 public enum JobStatus

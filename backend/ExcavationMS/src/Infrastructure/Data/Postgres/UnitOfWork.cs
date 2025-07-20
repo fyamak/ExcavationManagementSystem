@@ -13,11 +13,21 @@ public class UnitOfWork : IUnitOfWork
     private readonly PostgresContext _postgresContext;
     private readonly IMediator       _mediator;
 
+    private CustomerRepository? _customerRepository;
+    private ExpenseRepository _expenseRepository;
+    private IncomeRepository _incomeRepository;
+    private JobRepository _jobRepository;
     private UserRepository?      _userRepository;
     private UserTokenRepository? _userTokenRepository;
+    private VehicleRepository _vehicleRepository;
 
+    public ICustomerRepository Customers => _customerRepository ??= new CustomerRepository(_postgresContext);
+    public IExpenseRepository Expenses => _expenseRepository ??= new ExpenseRepository(_postgresContext);
+    public IIncomeRepository Incomes => _incomeRepository ??= new IncomeRepository(_postgresContext);
+    public IJobRepository Jobs => _jobRepository ??= new JobRepository(_postgresContext);
     public IUserRepository      Users      => _userRepository ??= new UserRepository(_postgresContext);
     public IUserTokenRepository UserTokens => _userTokenRepository ??= new UserTokenRepository(_postgresContext);
+    public IVehicleRepository Vehicles => _vehicleRepository ??= new VehicleRepository(_postgresContext);
 
     public UnitOfWork(PostgresContext postgresContext, IMediator mediator)
     {
