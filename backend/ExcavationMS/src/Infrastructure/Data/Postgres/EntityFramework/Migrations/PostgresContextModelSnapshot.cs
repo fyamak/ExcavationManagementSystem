@@ -285,9 +285,8 @@ namespace Infrastructure.Data.Postgres.EntityFramework.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("VehicleType")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("VehicleType")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

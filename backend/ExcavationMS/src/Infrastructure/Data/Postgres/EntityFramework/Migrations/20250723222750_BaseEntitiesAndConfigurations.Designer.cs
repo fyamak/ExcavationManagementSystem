@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Data.Postgres.Migrations
+namespace Infrastructure.Data.Postgres.EntityFramework.Migrations
 {
     [DbContext(typeof(PostgresContext))]
-    [Migration("20250719092402_JobVehicleRelationshipUpdated")]
-    partial class JobVehicleRelationshipUpdated
+    [Migration("20250723222750_BaseEntitiesAndConfigurations")]
+    partial class BaseEntitiesAndConfigurations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,9 +288,8 @@ namespace Infrastructure.Data.Postgres.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("VehicleType")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("VehicleType")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

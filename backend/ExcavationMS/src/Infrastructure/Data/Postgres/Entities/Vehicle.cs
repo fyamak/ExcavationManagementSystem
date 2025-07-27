@@ -12,6 +12,6 @@ public class Vehicle : TrackedBaseEntity<int>
 
 public enum VehicleType
 {
-    Truck,
+    Truck = 1,
     Excavator
 }

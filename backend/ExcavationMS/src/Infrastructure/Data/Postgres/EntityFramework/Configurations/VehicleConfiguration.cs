@@ -14,8 +14,6 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
             .HasMaxLength(256)
             .IsRequired();
 
-        builder.Property(x => x.VehicleType)
-            .HasConversion<string>()
-            .IsRequired();
+        builder.Property(x => x.VehicleType).IsRequired();
     }
 }
