@@ -15,10 +15,6 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
             .HasMaxLength(256)
             .IsRequired();
 
-        builder.Property(x => x.Status)
-            .HasDefaultValue(JobStatus.Planned)
-            .IsRequired();
-
         builder.Property(x => x.Description)
             .HasMaxLength(4096);
 

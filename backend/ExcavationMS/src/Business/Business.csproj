@@ -17,11 +17,4 @@
         <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="RequestHandlers\Job\" />
-      <Folder Include="RequestHandlers\Expense\" />
-      <Folder Include="RequestHandlers\Income\" />
-      <Folder Include="RequestHandlers\Vehicle\" />
-    </ItemGroup>
-
 </Project>
