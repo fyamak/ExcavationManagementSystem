@@ -11,17 +11,9 @@ namespace Business.RequestHandlers.Customer;
 
 public abstract class DeleteCustomer
 {
-    public class DeleteCustomerRequest : IRequest<Result>, IRequestToValidate
+    public class DeleteCustomerRequest : IRequest<Result>
     {
         public int Id;
-    }
-
-    public class DeleteCustomerRequestValidator : AbstractValidator<DeleteCustomerRequest>
-    {
-        public DeleteCustomerRequestValidator()
-        {
-            RuleFor(x => x.Id).NotEmpty().WithMessage("Müşteri Id boş bırakılamaz.");
-        }
     }
 
     public class DeleteCustomerRequestHandler : IRequestHandler<DeleteCustomerRequest, Result>

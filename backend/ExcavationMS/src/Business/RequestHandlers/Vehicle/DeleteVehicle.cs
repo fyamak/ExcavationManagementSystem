@@ -15,14 +15,6 @@ public abstract class DeleteVehicle
         public int Id;
     }
 
-    public class DeleteVehicleRequestValidator : AbstractValidator<DeleteVehicleRequest>
-    {
-        public DeleteVehicleRequestValidator()
-        {
-            RuleFor(x => x.Id).NotEmpty().WithMessage("Araç Id boş bırakılamaz");
-        }
-    }
-
     public class DeleteVehicleRequestHandler : IRequestHandler<DeleteVehicleRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
