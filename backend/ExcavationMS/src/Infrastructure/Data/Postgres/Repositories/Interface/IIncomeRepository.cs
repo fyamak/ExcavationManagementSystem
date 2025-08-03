@@ -3,6 +3,6 @@ using Infrastructure.Data.Postgres.Repositories.Base.Interface;
 
 namespace Infrastructure.Data.Postgres.Repositories.Interface;
 
-public interface IIncomeRepository : ITrackedEntityRepository<Income, int>
+public interface IIncomeRepository : IRepository<Income, int>
 {
 }
