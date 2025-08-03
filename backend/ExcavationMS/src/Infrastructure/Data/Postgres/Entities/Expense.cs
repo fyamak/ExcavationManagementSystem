@@ -6,7 +6,7 @@ public class Expense : TrackedBaseEntity<int>
 {
     public string Title { get; set; }
     public int Price { get; set; }
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
     public int JobId { get; set; }
     public Job Job { get; set; } = null!;
 }

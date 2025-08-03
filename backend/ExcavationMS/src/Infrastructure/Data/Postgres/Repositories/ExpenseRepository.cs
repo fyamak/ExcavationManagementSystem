@@ -5,7 +5,7 @@ using Infrastructure.Data.Postgres.Repositories.Interface;
 
 namespace Infrastructure.Data.Postgres.Repositories;
 
-public class ExpenseRepository : TrackedEntityRepository<Expense, int>, IExpenseRepository
+public class ExpenseRepository : Repository<Expense, int>, IExpenseRepository
 {
     public ExpenseRepository(PostgresContext postgresContext) : base(postgresContext)
     {
