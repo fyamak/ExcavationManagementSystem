@@ -22,7 +22,10 @@ public class JobRepository : TrackedEntityRepository<Job, int>, IJobRepository
         bool tracked = false)
     {
         var query = PostgresContext.Jobs.AsQueryable();
-        query = query.Where(x => x.VehicleId == vehicleId).Include(c => c.Customer);
+        query = query.Where(x => x.VehicleId == vehicleId)
+            .Include(c => c.Customer)
+            .Include(e => e.Expenses)
+            .Include(i => i.Incomes);
 
 
         if (!includeDeleted)

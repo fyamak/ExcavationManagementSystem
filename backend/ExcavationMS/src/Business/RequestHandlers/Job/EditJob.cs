@@ -1,13 +1,11 @@
 ﻿using Business.Mediator.Behaviours.Requests;
 using FluentValidation;
 using Infrastructure.Data.Postgres;
-using Infrastructure.Data.Postgres.Entities;
 using MediatR;
 using Serilog;
 using Serilog.Events;
 using Shared.Extensions;
 using Shared.Models.Results;
-using static Business.RequestHandlers.Customer.EditCustomer;
 
 namespace Business.RequestHandlers.Job;
 
@@ -19,9 +17,10 @@ public abstract class EditJob
         public string? Title { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
+        public int? StartHour { get; set; }
+        public int? EndHour { get; set; }
         public int? AgreementAmount { get; set; }
         public string? Description { get; set; }
-        public string? Location { get; set; }
     }
 
     public class EditJobResponse
@@ -30,9 +29,10 @@ public abstract class EditJob
         public string Title { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
+        public int? StartHour { get; set; }
+        public int? EndHour { get; set; }
         public int? AgreementAmount { get; set; }
         public string? Description { get; set; }
-        public string? Location { get; set; }
 
     }
 
@@ -48,9 +48,10 @@ public abstract class EditJob
                 .MaximumLength(4096).WithMessage("Açıklama boyutu 4096 karakterden fazla olamaz.")
                 .When(x => !string.IsNullOrWhiteSpace(x.Description));
 
-            RuleFor(x => x.Location)
-                .MaximumLength(256).WithMessage("Konum bilgisi boyutu 256 karakterden fazla olamaz.")
-                .When(x => !string.IsNullOrWhiteSpace(x.Location));
+            RuleFor(x => x.StartHour)
+                .GreaterThan(0).WithMessage("Başlangıç saati sıfırdan küçük olamaz.");
+            RuleFor(x => x.EndHour)
+                .GreaterThan(0).WithMessage("Bitiş saati sıfırdan küçük olamaz.");
 
         }
     }
@@ -91,6 +92,16 @@ public abstract class EditJob
                     job.EndDate = request.EndDate;
                 }
 
+                if(request.StartHour is not null)
+                {
+                    job.StartHour = request.StartHour;
+                }
+
+                if(request.EndHour is not null)
+                {
+                    job.EndHour = request.EndHour;
+                }
+
                 if(request.AgreementAmount is not null)
                 {
                     job.AgreementAmount = request.AgreementAmount;
@@ -101,10 +112,6 @@ public abstract class EditJob
                     job.Description = request.Description;
                 }
 
-                if(request.Location is not null)
-                {
-                    job.Location = request.Location;
-                }
 
                 await _unitOfWork.CommitAsync();
 
@@ -114,9 +121,10 @@ public abstract class EditJob
                     Title = job.Title,
                     StartDate = job.StartDate,
                     EndDate = job.EndDate,
+                    StartHour = job.StartHour,
+                    EndHour = job.EndHour,
                     AgreementAmount = job.AgreementAmount,
                     Description = job.Description,
-                    Location = job.Location
                 };
 
                 return DataResult<EditJobResponse>.Success(result);

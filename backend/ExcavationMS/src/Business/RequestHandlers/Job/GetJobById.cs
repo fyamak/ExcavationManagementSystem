@@ -20,9 +20,10 @@ public abstract class GetJobById
         public string Title { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
+        public int? StartHour { get; set; }
+        public int? EndHour { get; set; }
         public int? AgreementAmount { get; set; }
         public string? Description { get; set; }
-        public string? Location { get; set; }
         public int VehicleId { get; set; }
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
@@ -80,9 +81,10 @@ public abstract class GetJobById
                     Title = job.Title,
                     StartDate = job.StartDate,
                     EndDate = job.EndDate,
+                    StartHour = job.StartHour,
+                    EndHour = job.EndHour,
                     AgreementAmount = job.AgreementAmount,
                     Description = job.Description,
-                    Location = job.Location,
                     VehicleId = job.VehicleId,
                     CustomerId = job.CustomerId,
                     CustomerName = job.Customer.Name,

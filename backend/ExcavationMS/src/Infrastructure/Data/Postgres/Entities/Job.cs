@@ -7,10 +7,11 @@ public class Job : TrackedBaseEntity<int>
     public string Title { get; set; }
     public DateOnly? StartDate { get; set; }
     public DateOnly? EndDate { get; set; }
+    public int? StartHour { get; set; }
+    public int? EndHour { get; set; }
     public int? AgreementAmount { get; set; }
     public string? Description { get; set; }
-    public string? Location { get; set; }
-
+    
     // One Vehicle has many Jobs
     public int VehicleId { get; set; }
     public Vehicle Vehicle { get; set; }

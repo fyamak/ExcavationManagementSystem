@@ -18,9 +18,6 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
         builder.Property(x => x.Description)
             .HasMaxLength(4096);
 
-        builder.Property(x => x.Location)
-            .HasMaxLength(256);
-
         builder.HasOne(x => x.Customer)
             .WithMany(x => x.Jobs)
             .HasForeignKey(x => x.CustomerId)

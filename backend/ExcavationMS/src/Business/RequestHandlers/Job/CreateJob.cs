@@ -16,9 +16,10 @@ public abstract class CreateJob
         public string Title { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
+        public int? StartHour { get; set; }
+        public int? EndHour { get; set; }
         public int? AgreementAmount { get; set; }
         public string? Description { get; set; }
-        public string? Location { get; set; }
         public int VehicleId { get; set; }
         public int CustomerId { get; set; }
     }
@@ -40,8 +41,10 @@ public abstract class CreateJob
                 .MaximumLength(256).WithMessage("İş başlığı boyutu 256 karakterden fazla olamaz.");
             RuleFor(x => x.Description)
                 .MaximumLength(4096).WithMessage("Açıklama boyutu 4096 karakterden fazla olamaz.");
-            RuleFor(x => x.Location)
-                .MaximumLength(256).WithMessage("Konum bilgisi boyutu 256 karakterden fazla olamaz.");
+            RuleFor(x => x.StartHour)
+                .GreaterThan(0).WithMessage("Başlangıç saati sıfırdan küçük olamaz.");
+            RuleFor(x => x.EndHour)
+                .GreaterThan(0).WithMessage("Bitiş saati sıfırdan küçük olamaz.");
         }
     }
 
@@ -77,9 +80,10 @@ public abstract class CreateJob
                     Title = request.Title,
                     StartDate = request.StartDate,
                     EndDate = request.EndDate,
+                    StartHour = request.StartHour,
+                    EndHour = request.StartHour,
                     AgreementAmount = request.AgreementAmount,
                     Description = request.Description,
-                    Location = request.Location,
                     VehicleId = request.VehicleId,
                     CustomerId = request.CustomerId
                 };
